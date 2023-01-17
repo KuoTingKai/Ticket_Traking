@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
-@Document("staffs")
+@Document("staff")
 @Data
 public class Staff {
         public enum Type {

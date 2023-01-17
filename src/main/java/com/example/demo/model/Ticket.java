@@ -2,31 +2,38 @@ package com.example.demo.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
 @Data
+@Document("ticket")
 public class Ticket {
-    public enum Status{
-    Prefix,
-    Done
-}
     @Id
     private String id;
+    public enum Type{
+        Bug
+    }
+    public enum Status{
+    Prefix, Done
+}
+    private Type type;
     private Status status;
     private String summary;
     private String description;
 
     public Ticket(){
         this.id = Instant.now().toString();
+        this.type = Type.Bug;
         this.status = Status.Prefix;
         this.description = "";
         this.summary = "";
     }
 
-    public Ticket(String id, Status status, String summary, String description) {
+    public Ticket(String id, Type type,Status status, String summary, String description) {
         this.id = id;
-        this.status = status;
+        this.type = Type.Bug;
+        this.status = status.Prefix;
         this.summary = summary;
         this.description = description;
     }
