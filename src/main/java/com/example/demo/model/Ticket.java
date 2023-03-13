@@ -12,10 +12,11 @@ public class Ticket {
     @Id
     private String id;
     public enum Type{
+        TestCase,
         Bug
     }
     public enum Status{
-    Prefix, Done
+    bug, resolve
 }
     private Type type;
     private Status status;
@@ -25,15 +26,15 @@ public class Ticket {
     public Ticket(){
         this.id = Instant.now().toString();
         this.type = Type.Bug;
-        this.status = Status.Prefix;
+        this.status = Status.bug;
         this.description = "";
         this.summary = "";
     }
 
-    public Ticket(String id, Type type,Status status, String summary, String description) {
+    public Ticket(String id, Type type, String summary, String description) {
         this.id = id;
-        this.type = Type.Bug;
-        this.status = status.Prefix;
+        this.type = type;
+        this.status = status.bug;
         this.summary = summary;
         this.description = description;
     }
